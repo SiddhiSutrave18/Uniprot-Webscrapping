@@ -6,20 +6,60 @@
 The code contains 
 ## Scripts:
 ### 0.DATA_ANALYSIS.py
-The code is primarily used for filtering and processing data related to proteins and organisms, and the resulting output can be further analyzed or used as input for another script (presumably 'Strain_Search_MODIFIED_CODE.py') to perform additional tasks.  
+The code is primarily used for filtering and processing data related to proteins and organisms, and the resulting output can be further analyzed or used as input for another script ('Strain_Search_MODIFIED_CODE.py') to perform additional tasks.  
 This code is recommended if the Input csv file contains rows more than 10k so as to shorten the time for running the next code (1.Strain_Search_MODIFIED_CODE.py).  
 If the input file contains rows more than 10k, the script will take approximately 24hrs depending upon the speed of your computer.
   
 **Input**  
-Input the file downloaded from uniprot in csv format-------- [Input0]
-NOTE (Minimum requirement of csv file downloaded from the Uniprot website): the input csv must contain the columns: 'Entry', 'Protein Names' & 'Organism'  
+Input the file downloaded from uniprot in csv format-------- [Input0.csv]
+_NOTE (Minimum requirement of csv file downloaded from the Uniprot website): the input csv must contain the columns: 'Entry', 'Protein Names' & 'Organism'  _
 **Output1**  
-[Check_File.csv]This file likely contains the entries that passed the previous filtration steps.  
+The code creates a separate CSV file containing only the 'Entry' column data and saves it as 'Output0.csv.' This listing file could be used as input for a subsequent code named 'Strain_Search_MODIFIED_CODE.py.'---------[Output0.csv]  
 **Output2**  
+[Check_File.csv]This file likely contains the entries that passed the previous filtration steps. 
   
-### 0.DATA_ANALYSIS.py  
-This Python script utilizes the Selenium web automation library to scrape information from the UniProt website. The code's main purpose is to extract information about the "Strain" associated with UniProt entries specified by their UniProt IDs (accession numbers). Here's a description of the code's main components and steps:
+**Code Description**  
+1. Importing the necessary library:
+   - The code begins by importing the Pandas library and giving it the alias 'pd.'
+
+2. Loading the input CSV data:
+   - The code reads an input CSV file named 'Input0.csv' (downloaded from the Uniprot website) into a Pandas DataFrame and makes a copy of it.
+
+3. Filtering by Organism:
+   - The code calculates the count of unique values in the 'Organism' column and stores this in the 'organism_counts' Series.
+   - It then filters the DataFrame to keep only those entries where the organism name appears more than once. This is done to eliminate entries with unique organism names.
+
+4. Filtering by Protein Names:
+   - The code further filters the DataFrame to exclude entries where the 'Protein names' column contains the substring 'EC.' Entries with 'ec' in their protein names are removed.
+
+5. Lowercasing Protein Names:
+   - The code applies a lowercase transformation to the 'Protein names' column, but the result is not saved back to the DataFrame. It seems to be a redundant operation as it doesn't modify the DataFrame in place.
+
+6. Keyword-Based Filtration:
+   - The code specifies a keyword string containing several terms separated by the '|' symbol.
+   - It filters the DataFrame to keep only those entries where the 'Protein names' column contains one of these specified keywords.
+
+7. Saving the Output:
+   - The code saves the filtered DataFrame to a CSV file named 'Check_File.csv.' This file likely contains the entries that passed the previous filtration steps.
+
+8. Creating an Entry Listing File:
+   - The code creates a separate CSV file containing only the 'Entry' column data and saves it as 'Output0.csv.' This listing file could be used as input for a subsequent code named 'Strain_Search_MODIFIED_CODE.py.'
+
+The code is primarily used for filtering and processing data related to proteins and organisms, and the resulting output can be further analyzed or used as input for another script (presumably 'Strain_Search_MODIFIED_CODE.py') to perform additional tasks.
+    
+### 1.Strain_Search_MODIFIED_CODE.py  
+This Python script utilizes the Selenium web automation library to scrape strain names from the UniProt website. The code's main purpose is to extract information about the "Strain" associated with UniProt entries specified by their UniProt IDs (accession numbers).
   
+**Input**  
+Give the input file of previous code--------[Output0.csv]  
+OR   
+You can directly provide input file as it is downloaded from the Uniprot website for desired gene name.  
+NOTE (Minimum requirement of csv file downloaded from the Uniprot website): the input csv must contain the columns: 'Entry'
+
+**Output**  
+You will finally have a modified version of your csv file which will have an additional column 'Strain' with the corresponding strains of the given 'Entry'---------------[Output1.csv]  
+  
+**Code Description**  
 1. Importing Libraries:  
    - The script starts by importing the necessary libraries: Selenium for web automation, Pandas for data manipulation, and time for adding delays.  
   
