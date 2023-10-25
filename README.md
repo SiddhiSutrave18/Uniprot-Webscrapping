@@ -8,10 +8,10 @@ The code contains
 ### 0.DATA_ANALYSIS.py
 This code is recommended if the Input csv file contains rows more than 10k so as to shorten the time for the next code
 
-**Input**
+**Input**  
 Input the file downloaded from uniprot in csv format-------- [Input0]
 NOTE (Minimum requirement of csv file downloaded from the Uniprot website): the input csv must contain the columns: 'Entry', 'Protein Names' & 'Organism'
-**Output1**
+**Output1**  
 [Check_File.csv]This file likely contains the entries that passed the previous filtration steps.
-**Output2**
+**Output2**  
 
