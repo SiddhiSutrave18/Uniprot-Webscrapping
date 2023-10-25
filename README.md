@@ -6,12 +6,13 @@
 The code contains 
 ## Scripts:
 ### 0.DATA_ANALYSIS.py
-This code is recommended if the Input csv file contains rows more than 10k so as to shorten the time for the next code
-
+This code is recommended if the Input csv file contains rows more than 10k so as to shorten the time for running the next code (1.Strain_Search_MODIFIED_CODE.py).  
+If the input file contains rows more than 10k, the script will take approximately 24hrs depending upon the speed of your computer.
+  
 **Input**  
 Input the file downloaded from uniprot in csv format-------- [Input0]
-NOTE (Minimum requirement of csv file downloaded from the Uniprot website): the input csv must contain the columns: 'Entry', 'Protein Names' & 'Organism'
+NOTE (Minimum requirement of csv file downloaded from the Uniprot website): the input csv must contain the columns: 'Entry', 'Protein Names' & 'Organism'  
 **Output1**  
-[Check_File.csv]This file likely contains the entries that passed the previous filtration steps.
+[Check_File.csv]This file likely contains the entries that passed the previous filtration steps.  
 **Output2**  
 
